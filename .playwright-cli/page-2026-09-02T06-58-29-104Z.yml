@@ -1,0 +1,130 @@
+- main [ref=e2]:
+  - link "Skip to main content" [ref=e3] [cursor=pointer]:
+    - /url: "#main-content"
+  - link "Free delivery in Oman on orders over OMR 50" [ref=e4] [cursor=pointer]:
+    - /url: "#featured"
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - link "BLACKSHARK home" [ref=e7] [cursor=pointer]:
+        - /url: /
+        - img "BS Gaming shark logo" [ref=e8]
+        - generic [ref=e9]: BLACKSHARK
+      - search [ref=e10]:
+        - generic [ref=e11]:
+          - generic [ref=e12]: Search products, brands, categories, or SKU
+          - textbox "Search products, brands, categories, or SKU" [ref=e17]:
+            - /placeholder: Search PCs, components, gaming gear…
+      - navigation "Customer tools" [ref=e18]:
+        - button "Wishlist" [ref=e19]
+        - button "Account" [ref=e20]
+        - button "Cart, 0 items" [ref=e21]:
+          - generic [ref=e22]: "0"
+    - navigation "Product departments" [ref=e23]:
+      - generic [ref=e24]:
+        - link "PC Components" [ref=e25] [cursor=pointer]:
+          - /url: /categories/pc-components
+        - link "Gaming PCs" [ref=e26] [cursor=pointer]:
+          - /url: /categories/gaming-pcs
+        - link "Gaming Gear" [ref=e27] [cursor=pointer]:
+          - /url: /categories/gaming-gear
+        - link "Monitors" [ref=e28] [cursor=pointer]:
+          - /url: /categories/monitors
+        - link "Consoles" [ref=e29] [cursor=pointer]:
+          - /url: /categories/consoles
+        - link "Digital Cards" [ref=e30] [cursor=pointer]:
+          - /url: /categories/digital-cards
+        - link "Flash Deals" [ref=e31] [cursor=pointer]:
+          - /url: /deals
+  - generic [ref=e34]:
+    - generic [ref=e35]:
+      - paragraph [ref=e36]: Built for Oman. Ready for battle.
+      - heading "Own the game. Build without limits." [level=1] [ref=e37]: Own the game.Build without limits.
+      - paragraph [ref=e38]: Performance gaming PCs, precision components, and serious gear—selected for players who refuse to compromise.
+      - generic [ref=e39]:
+        - link "Shop featured" [ref=e40] [cursor=pointer]:
+          - /url: "#featured"
+        - link "Build your PC" [ref=e43] [cursor=pointer]:
+          - /url: /build
+    - img "BLACKSHARK BS Gaming emblem" [ref=e46]
+  - region [ref=e47]:
+    - paragraph [ref=e48]: Find your advantage
+    - heading "Shop by department" [level=2] [ref=e49]
+    - generic [ref=e50]:
+      - link "01 PC Components Explore products" [ref=e51] [cursor=pointer]:
+        - /url: /categories/pc-components
+        - generic [ref=e52]: "01"
+        - heading "PC Components" [level=3] [ref=e53]
+        - generic [ref=e54]: Explore products
+      - link "02 Gaming PCs Explore products" [ref=e55] [cursor=pointer]:
+        - /url: /categories/gaming-pcs
+        - generic [ref=e56]: "02"
+        - heading "Gaming PCs" [level=3] [ref=e57]
+        - generic [ref=e58]: Explore products
+      - link "03 Gaming Gear Explore products" [ref=e59] [cursor=pointer]:
+        - /url: /categories/gaming-gear
+        - generic [ref=e60]: "03"
+        - heading "Gaming Gear" [level=3] [ref=e61]
+        - generic [ref=e62]: Explore products
+      - link "04 Monitors Explore products" [ref=e63] [cursor=pointer]:
+        - /url: /categories/monitors
+        - generic [ref=e64]: "04"
+        - heading "Monitors" [level=3] [ref=e65]
+        - generic [ref=e66]: Explore products
+      - link "05 Consoles Explore products" [ref=e67] [cursor=pointer]:
+        - /url: /categories/consoles
+        - generic [ref=e68]: "05"
+        - heading "Consoles" [level=3] [ref=e69]
+        - generic [ref=e70]: Explore products
+      - link "06 Digital Cards Explore products" [ref=e71] [cursor=pointer]:
+        - /url: /categories/digital-cards
+        - generic [ref=e72]: "06"
+        - heading "Digital Cards" [level=3] [ref=e73]
+        - generic [ref=e74]: Explore products
+  - region [ref=e75]:
+    - generic [ref=e76]:
+      - paragraph [ref=e77]: Staff picks
+      - heading "Featured Performance Gear" [level=2] [ref=e78]
+      - generic [ref=e79]:
+        - article [ref=e80]:
+          - generic [ref=e82]:
+            - paragraph [ref=e83]: BS-PC-5080
+            - heading "BLACKSHARK RTX 5080 Gaming PC" [level=3] [ref=e84]
+            - paragraph [ref=e85]: OMR 1,399.000
+            - paragraph [ref=e86]: 4 in stock
+            - link "View Product" [ref=e87] [cursor=pointer]:
+              - /url: /products/blackshark-rtx-5080-gaming-pc
+        - article [ref=e88]:
+          - generic [ref=e90]:
+            - paragraph [ref=e91]: BS-PC-5070
+            - heading "BLACKSHARK RTX 5070 Gaming PC" [level=3] [ref=e92]
+            - paragraph [ref=e93]: OMR 949.000
+            - paragraph [ref=e94]: 7 in stock
+            - link "View Product" [ref=e95] [cursor=pointer]:
+              - /url: /products/blackshark-rtx-5070-gaming-pc
+        - article [ref=e96]:
+          - generic [ref=e98]:
+            - paragraph [ref=e99]: BS-MON-240
+            - heading "BLACKSHARK 27-inch 240Hz Monitor" [level=3] [ref=e100]
+            - paragraph [ref=e101]: OMR 189.000
+            - paragraph [ref=e102]: 12 in stock
+            - link "View Product" [ref=e103] [cursor=pointer]:
+              - /url: /products/blackshark-240hz-gaming-monitor
+        - article [ref=e104]:
+          - generic [ref=e106]:
+            - paragraph [ref=e107]: BS-AUD-PRO
+            - heading "BLACKSHARK Pro Gaming Headset" [level=3] [ref=e108]
+            - paragraph [ref=e109]: OMR 34.000
+            - paragraph [ref=e110]: 18 in stock
+            - link "View Product" [ref=e111] [cursor=pointer]:
+              - /url: /products/blackshark-pro-gaming-headset
+  - region "Store benefits" [ref=e112]:
+    - generic [ref=e119]:
+      - heading "Fast GCC delivery" [level=2] [ref=e120]
+      - paragraph [ref=e121]: Clear delivery estimates across Oman and the GCC.
+    - generic [ref=e126]:
+      - heading "Protected purchases" [level=2] [ref=e127]
+      - paragraph [ref=e128]: Secure checkout architecture and genuine warranty details.
+    - generic [ref=e132]:
+      - heading "Real support" [level=2] [ref=e133]
+      - paragraph [ref=e134]: Helpful local support before and after your purchase.
+  - generic [ref=e135]: © 2026 BLACKSHARK. Built for players across Oman and the GCC.

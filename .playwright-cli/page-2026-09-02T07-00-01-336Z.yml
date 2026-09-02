@@ -1,0 +1,134 @@
+- generic [ref=f1e1]:
+  - main [aria-hidden] [ref=f1e2]:
+    - link [ref=f1e138] [cursor=pointer]:
+      - /url: "#main-content"
+      - text: Skip to main content
+    - link [ref=f1e139] [cursor=pointer]:
+      - /url: "#featured"
+      - text: Free delivery in Oman on orders over OMR 50
+    - generic [ref=f1e6]:
+      - button [expanded] [ref=f1e140]
+      - link [ref=f1e141] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=f1e143]:
+        - button [ref=f1e144]
+        - button [ref=f1e145]
+        - button [ref=f1e146]:
+          - generic [ref=f1e22]: "0"
+    - generic [ref=f1e35]:
+      - paragraph [ref=f1e36]: Built for Oman. Ready for battle.
+      - heading [level=1] [ref=f1e147]: Own the game. Build without limits.
+      - paragraph [ref=f1e38]: Performance gaming PCs, precision components, and serious gear—selected for players who refuse to compromise.
+      - generic [ref=f1e39]:
+        - link [ref=f1e148] [cursor=pointer]:
+          - /url: "#featured"
+          - text: Shop featured
+        - link [ref=f1e149] [cursor=pointer]:
+          - /url: /build
+          - text: Build your PC
+    - region [ref=f1e151]:
+      - paragraph [ref=f1e48]: Find your advantage
+      - heading [level=2] [ref=f1e152]: Shop by department
+      - generic [ref=f1e50]:
+        - link [ref=f1e153] [cursor=pointer]:
+          - /url: /categories/pc-components
+          - generic [ref=f1e52]: "01"
+          - heading [level=3] [ref=f1e154]: PC Components
+          - generic [ref=f1e54]: Explore products
+        - link [ref=f1e155] [cursor=pointer]:
+          - /url: /categories/gaming-pcs
+          - generic [ref=f1e56]: "02"
+          - heading [level=3] [ref=f1e156]: Gaming PCs
+          - generic [ref=f1e58]: Explore products
+        - link [ref=f1e157] [cursor=pointer]:
+          - /url: /categories/gaming-gear
+          - generic [ref=f1e60]: "03"
+          - heading [level=3] [ref=f1e158]: Gaming Gear
+          - generic [ref=f1e62]: Explore products
+        - link [ref=f1e159] [cursor=pointer]:
+          - /url: /categories/monitors
+          - generic [ref=f1e64]: "04"
+          - heading [level=3] [ref=f1e160]: Monitors
+          - generic [ref=f1e66]: Explore products
+        - link [ref=f1e161] [cursor=pointer]:
+          - /url: /categories/consoles
+          - generic [ref=f1e68]: "05"
+          - heading [level=3] [ref=f1e162]: Consoles
+          - generic [ref=f1e70]: Explore products
+        - link [ref=f1e163] [cursor=pointer]:
+          - /url: /categories/digital-cards
+          - generic [ref=f1e72]: "06"
+          - heading [level=3] [ref=f1e164]: Digital Cards
+          - generic [ref=f1e74]: Explore products
+    - region [ref=f1e165]:
+      - generic [ref=f1e76]:
+        - paragraph [ref=f1e77]: Staff picks
+        - heading [level=2] [ref=f1e166]: Featured Performance Gear
+        - generic [ref=f1e79]:
+          - article [ref=f1e80]:
+            - generic [ref=f1e82]:
+              - paragraph [ref=f1e83]: BS-PC-5080
+              - heading [level=3] [ref=f1e167]: BLACKSHARK RTX 5080 Gaming PC
+              - paragraph [ref=f1e85]: OMR 1,399.000
+              - paragraph [ref=f1e86]: 4 in stock
+              - link [ref=f1e168] [cursor=pointer]:
+                - /url: /products/blackshark-rtx-5080-gaming-pc
+                - text: View Product
+          - article [ref=f1e88]:
+            - generic [ref=f1e90]:
+              - paragraph [ref=f1e91]: BS-PC-5070
+              - heading [level=3] [ref=f1e169]: BLACKSHARK RTX 5070 Gaming PC
+              - paragraph [ref=f1e93]: OMR 949.000
+              - paragraph [ref=f1e94]: 7 in stock
+              - link [ref=f1e170] [cursor=pointer]:
+                - /url: /products/blackshark-rtx-5070-gaming-pc
+                - text: View Product
+          - article [ref=f1e96]:
+            - generic [ref=f1e98]:
+              - paragraph [ref=f1e99]: BS-MON-240
+              - heading [level=3] [ref=f1e171]: BLACKSHARK 27-inch 240Hz Monitor
+              - paragraph [ref=f1e101]: OMR 189.000
+              - paragraph [ref=f1e102]: 12 in stock
+              - link [ref=f1e172] [cursor=pointer]:
+                - /url: /products/blackshark-240hz-gaming-monitor
+                - text: View Product
+          - article [ref=f1e104]:
+            - generic [ref=f1e106]:
+              - paragraph [ref=f1e107]: BS-AUD-PRO
+              - heading [level=3] [ref=f1e173]: BLACKSHARK Pro Gaming Headset
+              - paragraph [ref=f1e109]: OMR 34.000
+              - paragraph [ref=f1e110]: 18 in stock
+              - link [ref=f1e174] [cursor=pointer]:
+                - /url: /products/blackshark-pro-gaming-headset
+                - text: View Product
+    - region [ref=f1e175]:
+      - generic [ref=f1e119]:
+        - heading [level=2] [ref=f1e176]: Fast GCC delivery
+        - paragraph [ref=f1e121]: Clear delivery estimates across Oman and the GCC.
+      - generic [ref=f1e126]:
+        - heading [level=2] [ref=f1e177]: Protected purchases
+        - paragraph [ref=f1e128]: Secure checkout architecture and genuine warranty details.
+      - generic [ref=f1e132]:
+        - heading [level=2] [ref=f1e178]: Real support
+        - paragraph [ref=f1e134]: Helpful local support before and after your purchase.
+    - generic [ref=f1e135]: © 2026 BLACKSHARK. Built for players across Oman and the GCC.
+  - dialog [ref=f1e182]:
+    - generic [ref=f1e183]:
+      - heading "Shop BLACKSHARK" [level=2] [ref=f1e184]
+      - paragraph [ref=f1e185]: Browse our gaming departments.
+    - navigation "Mobile navigation" [ref=f1e186]:
+      - link "PC Components" [active] [ref=f1e187] [cursor=pointer]:
+        - /url: /categories/pc-components
+      - link "Gaming PCs" [ref=f1e188] [cursor=pointer]:
+        - /url: /categories/gaming-pcs
+      - link "Gaming Gear" [ref=f1e189] [cursor=pointer]:
+        - /url: /categories/gaming-gear
+      - link "Monitors" [ref=f1e190] [cursor=pointer]:
+        - /url: /categories/monitors
+      - link "Consoles" [ref=f1e191] [cursor=pointer]:
+        - /url: /categories/consoles
+      - link "Digital Cards" [ref=f1e192] [cursor=pointer]:
+        - /url: /categories/digital-cards
+      - link "Deals" [ref=f1e193] [cursor=pointer]:
+        - /url: /deals
+    - button "Close" [ref=f1e194]

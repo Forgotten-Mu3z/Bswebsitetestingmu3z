@@ -1,0 +1,19 @@
+import { integer, primaryKey, sqliteTable, text } from 'drizzle-orm/sqlite-core';
+
+export const users = sqliteTable('users', {
+  id: text('id').primaryKey(), email: text('email').notNull().unique(), displayName: text('display_name'),
+  suspendedAt: integer('suspended_at', { mode: 'timestamp' }), createdAt: integer('created_at', { mode: 'timestamp' }).notNull(), updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull(),
+});
+export const roles = sqliteTable('roles', { id: text('id').primaryKey(), name: text('name').notNull().unique(), isSystem: integer('is_system', { mode: 'boolean' }).notNull().default(false) });
+export const permissions = sqliteTable('permissions', { id: text('id').primaryKey(), key: text('key').notNull().unique(), description: text('description').notNull() });
+export const userRoles = sqliteTable('user_roles', { userId: text('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }), roleId: text('role_id').notNull().references(() => roles.id, { onDelete: 'cascade' }) }, (table) => [primaryKey({ columns: [table.userId, table.roleId] })]);
+export const rolePermissions = sqliteTable('role_permissions', { roleId: text('role_id').notNull().references(() => roles.id, { onDelete: 'cascade' }), permissionId: text('permission_id').notNull().references(() => permissions.id, { onDelete: 'cascade' }) }, (table) => [primaryKey({ columns: [table.roleId, table.permissionId] })]);
+export const categories = sqliteTable('categories', {
+  id: text('id').primaryKey(), parentId: text('parent_id'), slug: text('slug').notNull().unique(), nameEn: text('name_en').notNull(), nameAr: text('name_ar').notNull(), imageKey: text('image_key'), sortOrder: integer('sort_order').notNull().default(0), enabled: integer('enabled', { mode: 'boolean' }).notNull().default(true),
+});
+export const brands = sqliteTable('brands', { id: text('id').primaryKey(), slug: text('slug').notNull().unique(), name: text('name').notNull().unique(), logoKey: text('logo_key'), description: text('description') });
+export const products = sqliteTable('products', {
+  id: text('id').primaryKey(), slug: text('slug').notNull().unique(), sku: text('sku').notNull().unique(), titleEn: text('title_en').notNull(), titleAr: text('title_ar').notNull(), shortDescription: text('short_description').notNull(), categoryId: text('category_id').notNull().references(() => categories.id), brandId: text('brand_id').references(() => brands.id), priceBaisa: integer('price_baisa').notNull(), salePriceBaisa: integer('sale_price_baisa'), stockQuantity: integer('stock_quantity').notNull().default(0), lowStockThreshold: integer('low_stock_threshold').notNull().default(3), status: text('status', { enum: ['DRAFT', 'PUBLISHED', 'HIDDEN'] }).notNull().default('DRAFT'), featured: integer('featured', { mode: 'boolean' }).notNull().default(false), imageKey: text('image_key'), createdAt: integer('created_at', { mode: 'timestamp' }).notNull(), updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull(),
+});
+export const announcements = sqliteTable('announcements', { id: text('id').primaryKey(), textEn: text('text_en').notNull(), textAr: text('text_ar').notNull(), link: text('link'), enabled: integer('enabled', { mode: 'boolean' }).notNull().default(true), startsAt: integer('starts_at', { mode: 'timestamp' }), endsAt: integer('ends_at', { mode: 'timestamp' }) });
+export const auditLogs = sqliteTable('audit_logs', { id: text('id').primaryKey(), actorUserId: text('actor_user_id').references(() => users.id), action: text('action').notNull(), resourceType: text('resource_type').notNull(), resourceId: text('resource_id'), oldValue: text('old_value'), newValue: text('new_value'), ipAddress: text('ip_address'), userAgent: text('user_agent'), createdAt: integer('created_at', { mode: 'timestamp' }).notNull() });
