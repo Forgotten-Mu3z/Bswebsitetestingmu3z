@@ -2,6 +2,10 @@
 
 BLACKSHARK is a mobile-first ecommerce storefront and catalog admin for gaming PCs, PC components, monitors, consoles and gaming gear in Oman.
 
+## Live website
+
+[Open the BLACKSHARK store](https://blackshark-gaming-oman.xxgunone11.chatgpt.site/)
+
 ## Current features
 
 - Responsive storefront with product search and category browsing
