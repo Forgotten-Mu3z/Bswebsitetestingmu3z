@@ -8,6 +8,13 @@
       "when": 1788331781837,
       "tag": "0000_absent_famine",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1789190800000,
+      "tag": "0001_catalog_seed",
+      "breakpoints": true
     }
   ]
 }
