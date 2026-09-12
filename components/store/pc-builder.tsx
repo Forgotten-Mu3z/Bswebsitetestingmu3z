@@ -12,6 +12,7 @@ import {
   Gauge,
   HardDrive,
   MemoryStick,
+  MessageCircle,
   MonitorUp,
   PackageCheck,
   ShieldCheck,
@@ -59,9 +60,20 @@ const stepIcons = {
 } satisfies Record<BuilderStep, typeof Cpu>;
 
 const storageKey = 'blackshark-pc-builder-v1';
+const publicBuilderUrl =
+  'https://blackshark-gaming-oman.xxgunone11.chatgpt.site/build';
 
 function getPrice(product: BuilderProduct) {
   return product.salePriceBaisa ?? product.priceBaisa;
+}
+
+function getBuildParams(selections: BuilderSelections) {
+  const params = new URLSearchParams();
+  for (const { key } of builderSteps) {
+    const productId = selections[key];
+    if (productId) params.set(key, productId);
+  }
+  return params;
 }
 
 function ProductPicker({
@@ -98,6 +110,7 @@ function ProductPicker({
             type="button"
             disabled={isUnavailable}
             onClick={() => onSelect(product.id)}
+            aria-label={`Select ${product.titleEn}`}
             aria-pressed={isSelected}
             className="group min-w-0 rounded-2xl border border-white/10 bg-[#0a1420] p-3 text-left transition-[border-color,background-color,transform] hover:-translate-y-0.5 hover:border-cyan-300/50 hover:bg-[#0d1a28] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 disabled:cursor-not-allowed disabled:opacity-45 aria-pressed:border-cyan-300 aria-pressed:bg-cyan-300/10"
           >
@@ -176,8 +189,26 @@ export function PcBuilder({ products }: { products: BuilderProduct[] }) {
     return grouped;
   }, [products]);
 
+  /* oxlint-disable react/react-compiler -- Restore URL/local browser state after hydration. */
   useEffect(() => {
     try {
+      const sharedParams = new URLSearchParams(window.location.search);
+      const hasSharedBuild = builderSteps.some(({ key }) =>
+        sharedParams.has(key),
+      );
+
+      if (hasSharedBuild) {
+        const sharedSelections: BuilderSelections = {};
+        for (const { key } of builderSteps) {
+          const productId = sharedParams.get(key);
+          if (productId && productsById.has(productId)) {
+            sharedSelections[key] = productId;
+          }
+        }
+        setSelections(normalizeSelections(sharedSelections, productsById));
+        return;
+      }
+
       const saved = window.localStorage.getItem(storageKey);
       if (saved) {
         const parsed = JSON.parse(saved) as {
@@ -199,12 +230,24 @@ export function PcBuilder({ products }: { products: BuilderProduct[] }) {
       setHasLoadedSavedBuild(true);
     }
   }, [productsById]);
+  /* oxlint-enable react/react-compiler */
 
   useEffect(() => {
     if (!hasLoadedSavedBuild) return;
     window.localStorage.setItem(
       storageKey,
       JSON.stringify({ version: 1, selections }),
+    );
+
+    const params = new URLSearchParams(window.location.search);
+    for (const { key } of builderSteps) params.delete(key);
+    const buildParams = getBuildParams(selections);
+    buildParams.forEach((value, key) => params.set(key, value));
+    const query = params.toString();
+    window.history.replaceState(
+      window.history.state,
+      '',
+      `${window.location.pathname}${query ? `?${query}` : ''}${window.location.hash}`,
     );
   }, [hasLoadedSavedBuild, selections]);
 
@@ -219,6 +262,21 @@ export function PcBuilder({ products }: { products: BuilderProduct[] }) {
     0,
   );
   const buildComplete = completedCount === builderSteps.length;
+  const sharedBuildUrl = `${publicBuilderUrl}?${getBuildParams(selections)}`;
+  const shareMessage = [
+    'BLACKSHARK PC Build',
+    '',
+    ...builderSteps.map(({ key, label }) => {
+      const productId = selections[key];
+      const product = productId ? productsById.get(productId) : undefined;
+      return `${label}: ${product?.titleEn ?? 'Not selected'}`;
+    }),
+    '',
+    `Estimated total: ${omr.format(totalBaisa / 1000)}`,
+    '',
+    `View this build: ${sharedBuildUrl}`,
+  ].join('\n');
+  const whatsappHref = `https://wa.me/?text=${encodeURIComponent(shareMessage)}`;
 
   const activeDefinition = activeStep
     ? builderSteps.find(({ key }) => key === activeStep)
@@ -424,23 +482,13 @@ export function PcBuilder({ products }: { products: BuilderProduct[] }) {
                 {completedCount}/{builderSteps.length}
               </span>
             </div>
-            <div
-              role="progressbar"
+            <progress
               aria-label="Build progress"
-              aria-valuemin={0}
-              aria-valuemax={builderSteps.length}
-              aria-valuenow={completedCount}
               aria-valuetext={`${completedCount} of ${builderSteps.length} parts selected`}
-              className="mt-3 h-1 overflow-hidden rounded-full bg-white/10"
-            >
-              <div
-                aria-hidden="true"
-                className="h-full rounded-full bg-cyan-300 transition-[width] motion-reduce:transition-none"
-                style={{
-                  width: `${(completedCount / builderSteps.length) * 100}%`,
-                }}
-              />
-            </div>
+              max={builderSteps.length}
+              value={completedCount}
+              className="mt-3 block h-1 w-full appearance-none overflow-hidden rounded-full bg-white/10 [&::-moz-progress-bar]:rounded-full [&::-moz-progress-bar]:bg-cyan-300 [&::-webkit-progress-bar]:rounded-full [&::-webkit-progress-bar]:bg-white/10 [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-value]:bg-cyan-300"
+            />
           </div>
 
           <div
@@ -508,6 +556,18 @@ export function PcBuilder({ products }: { products: BuilderProduct[] }) {
                 {omr.format(totalBaisa / 1000)}
               </p>
             </div>
+            {buildComplete ? (
+              <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Share completed PC build on WhatsApp"
+                className="mt-5 inline-flex min-h-11 w-full touch-manipulation items-center justify-center gap-2 rounded-xl bg-[#25D366] px-4 py-3 font-black text-[#03130a] transition-colors hover:bg-[#20bd5a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7cffaa]"
+              >
+                <MessageCircle aria-hidden="true" className="size-5" />
+                Share on WhatsApp
+              </a>
+            ) : null}
           </div>
 
           <p className="mt-5 flex items-start gap-2 text-xs leading-5 text-slate-500">
@@ -531,13 +591,26 @@ export function PcBuilder({ products }: { products: BuilderProduct[] }) {
               {omr.format(totalBaisa / 1000)}
             </p>
           </div>
-          <a
-            href="#build-summary"
-            className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-xl bg-cyan-300 px-4 font-black text-[#03101a] hover:bg-cyan-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-100"
-          >
-            View Summary
-            <ChevronRight aria-hidden="true" className="size-4" />
-          </a>
+          {buildComplete ? (
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Share completed PC build on WhatsApp"
+              className="inline-flex min-h-11 shrink-0 touch-manipulation items-center gap-2 rounded-xl bg-[#25D366] px-4 font-black text-[#03130a] hover:bg-[#20bd5a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7cffaa]"
+            >
+              <MessageCircle aria-hidden="true" className="size-4" />
+              Share Build
+            </a>
+          ) : (
+            <a
+              href="#build-summary"
+              className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-xl bg-cyan-300 px-4 font-black text-[#03101a] hover:bg-cyan-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-100"
+            >
+              View Summary
+              <ChevronRight aria-hidden="true" className="size-4" />
+            </a>
+          )}
         </div>
       </div>
 

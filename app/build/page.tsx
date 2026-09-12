@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { ShieldCheck } from 'lucide-react';
 import { PcBuilder } from '@/components/store/pc-builder';
 import { StoreHeader } from '@/components/store/store-header';
@@ -29,12 +30,12 @@ export default async function BuildPage() {
         <section className="border-b border-white/10 bg-[radial-gradient(circle_at_82%_10%,rgba(34,211,238,.14),transparent_30%),linear-gradient(180deg,#07111c_0%,#03060c_100%)]">
           <div className="mx-auto max-w-[1440px] px-4 py-8 sm:px-6 sm:py-11 lg:px-8">
             <nav aria-label="Breadcrumb" className="text-sm text-slate-400">
-              <a
+              <Link
                 href="/"
                 className="rounded-sm hover:text-cyan-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
               >
                 Home
-              </a>
+              </Link>
               <span aria-hidden="true"> / </span>
               <span>PC Builder</span>
             </nav>
