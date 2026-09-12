@@ -2,6 +2,20 @@ import { env } from 'cloudflare:workers';
 import { drizzle } from 'drizzle-orm/d1';
 import * as schema from './schema';
 
+export function getBinding() {
+  return env.DB;
+}
+
+export function getFileBucket() {
+  if (!env.FILES) {
+    throw new Error(
+      'Cloudflare R2 binding `FILES` is unavailable. Configure it before uploading product images.',
+    );
+  }
+
+  return env.FILES;
+}
+
 export function getDb() {
   if (!env.DB) {
     throw new Error(
