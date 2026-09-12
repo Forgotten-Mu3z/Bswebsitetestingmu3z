@@ -44,6 +44,12 @@ export function StoreHeader({ categories }: { categories: Category[] }) {
             </SheetHeader>
             <nav aria-label="Mobile navigation" className="grid gap-1 px-4">
               <a
+                href="/build"
+                className="rounded-lg bg-cyan-300/10 px-3 py-3 font-bold text-cyan-200 hover:bg-cyan-300/15"
+              >
+                Build Your PC
+              </a>
+              <a
                 href="/admin"
                 className="rounded-lg px-3 py-3 font-semibold text-cyan-300 hover:bg-white/10"
               >
@@ -158,6 +164,12 @@ export function StoreHeader({ categories }: { categories: Category[] }) {
               {category.nameEn}
             </a>
           ))}
+          <a
+            href="/build"
+            className="whitespace-nowrap text-cyan-200 transition-colors hover:text-cyan-300"
+          >
+            Build Your PC
+          </a>
           <a href="/deals" className="ml-auto whitespace-nowrap text-cyan-300">
             Flash Deals
           </a>
