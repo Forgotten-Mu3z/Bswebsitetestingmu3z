@@ -325,13 +325,13 @@ export function PcBuilder({ products }: { products: BuilderProduct[] }) {
           <div className="flex items-end justify-between gap-4">
             <div>
               <p className="text-sm font-black uppercase tracking-[.18em] text-cyan-300">
-                Your Parts
+                Your parts
               </p>
               <h2
                 id="parts-heading"
                 className="mt-1 text-2xl font-black text-white sm:text-3xl"
               >
-                Choose 1 Part at a Time
+                Choose one part at a time
               </h2>
             </div>
             <span className="hidden rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm font-bold text-slate-300 sm:inline-flex">
@@ -462,7 +462,7 @@ export function PcBuilder({ products }: { products: BuilderProduct[] }) {
             </div>
             <div>
               <p className="text-xs font-black uppercase tracking-[.16em] text-cyan-300">
-                Live Check
+                Build check
               </p>
               <h2
                 id="summary-heading"
@@ -510,7 +510,7 @@ export function PcBuilder({ products }: { products: BuilderProduct[] }) {
                 <p className="font-bold text-white">
                   {buildComplete
                     ? 'Your core build is ready'
-                    : 'Compatibility protection is on'}
+                    : 'Compatibility checks are on'}
                 </p>
                 <p className="mt-1 text-sm leading-6 text-slate-400">
                   {buildComplete

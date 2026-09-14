@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { CommerceProvider } from '@/components/store/commerce-provider';
 import './globals.css';
 
 const geistSans = Geist({
@@ -13,12 +14,27 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    'https://blackshark-gaming-oman.xxgunone11.chatgpt.site',
+  ),
   title: 'BLACKSHARK | Gaming PCs, Components & Gear in Oman',
-  description: 'Premium gaming PCs, PC components, consoles, and gaming gear for Oman and the GCC.',
+  description:
+    'Shop BLACKSHARK gaming PCs, PC components, consoles, monitors, and gaming gear priced in Omani rials.',
   icons: { icon: '/favicon.svg' },
+  alternates: { canonical: '/' },
+  openGraph: {
+    type: 'website',
+    title: 'BLACKSHARK Gaming Oman',
+    description:
+      'Gaming PCs, PC components, consoles, monitors, and gaming gear.',
+    siteName: 'BLACKSHARK',
+  },
 };
 
-export const viewport: Viewport = { themeColor: '#03060c', colorScheme: 'dark' };
+export const viewport: Viewport = {
+  themeColor: '#03060c',
+  colorScheme: 'dark',
+};
 
 export default function RootLayout({
   children,
@@ -30,7 +46,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <CommerceProvider>{children}</CommerceProvider>
       </body>
     </html>
   );

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ShieldCheck } from 'lucide-react';
 import { PcBuilder } from '@/components/store/pc-builder';
+import { StoreFooter } from '@/components/store/store-footer';
 import { StoreHeader } from '@/components/store/store-header';
 import { getPcBuilderData } from '@/server/storefront';
 
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
   title: 'Build Your PC | BLACKSHARK',
   description:
     'Choose compatible PC components and build a gaming PC with live OMR pricing.',
+  alternates: { canonical: '/build' },
 };
 
 export default async function BuildPage() {
@@ -42,23 +44,20 @@ export default async function BuildPage() {
             <div className="mt-5 grid gap-5 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
               <div className="max-w-3xl">
                 <p className="text-xs font-black uppercase tracking-[.22em] text-cyan-300">
-                  Compatibility-Checked Builder
+                  PC builder
                 </p>
                 <h1 className="mt-2 text-balance text-4xl font-black tracking-[-.035em] sm:text-5xl lg:text-6xl">
                   Build Your PC
                 </h1>
                 <p className="mt-3 max-w-2xl text-pretty text-base leading-7 text-slate-300 sm:text-lg">
-                  Start with a processor. BLACKSHARK will show matching
-                  motherboards, RAM, cases, and power supplies as you build.
+                  Start with a processor. Then choose matching motherboards,
+                  memory, cases, and power supplies.
                 </p>
               </div>
               <div className="flex flex-wrap gap-2 text-sm font-bold">
                 <span className="inline-flex items-center gap-2 rounded-full border border-emerald-300/25 bg-emerald-300/10 px-3 py-2 text-emerald-200">
                   <ShieldCheck aria-hidden="true" className="size-4" />{' '}
-                  Compatibility on
-                </span>
-                <span className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-slate-300">
-                  OMR pricing
+                  Compatibility checks on
                 </span>
               </div>
             </div>
@@ -69,6 +68,7 @@ export default async function BuildPage() {
           <PcBuilder products={products} />
         </div>
       </main>
+      <StoreFooter categories={categories} />
     </>
   );
 }

@@ -545,6 +545,9 @@ export function AdminProductManager({
                       JPG, PNG, WebP, or AVIF. Maximum 5 MB. A square image
                       works best across the store.
                     </p>
+                    <p className="mt-2 text-sm font-semibold leading-6 text-amber-200">
+                      Only upload images you own or have permission to use.
+                    </p>
                     <label className="mt-4 inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-xl border border-cyan-300/40 px-4 text-sm font-bold text-cyan-200 transition hover:bg-cyan-300/10 focus-within:outline-2 focus-within:outline-cyan-300">
                       <Upload aria-hidden="true" className="size-4" />
                       {imageFile ? 'Choose a different image' : 'Upload image'}
