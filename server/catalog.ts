@@ -1,6 +1,7 @@
 import { and, asc, desc, eq, gt, like, or, sql } from 'drizzle-orm';
 import { getDb } from '@/db';
 import { brands, categories, products } from '@/db/schema';
+import { resolveProductImage } from '@/lib/product-images';
 import type { StoreProduct } from '@/lib/store-types';
 
 const storeProductFields = {
@@ -25,7 +26,11 @@ const storeProductFields = {
 function mapStoreProduct(
   row: Omit<StoreProduct, 'updatedAt'> & { updatedAt: Date },
 ): StoreProduct {
-  return { ...row, updatedAt: row.updatedAt.getTime() };
+  return {
+    ...row,
+    imageKey: resolveProductImage(row.slug, row.imageKey),
+    updatedAt: row.updatedAt.getTime(),
+  };
 }
 
 export async function searchCatalog(
@@ -117,7 +122,15 @@ export async function getProduct(slug: string) {
       ),
     )
     .limit(1);
-  return row ?? null;
+  return row
+    ? {
+        ...row,
+        product: {
+          ...row.product,
+          imageKey: resolveProductImage(row.product.slug, row.product.imageKey),
+        },
+      }
+    : null;
 }
 
 export async function getSitemapEntries() {

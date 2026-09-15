@@ -7,6 +7,7 @@ import { ProductShelf } from '@/components/store/product-shelf';
 import { StoreFooter } from '@/components/store/store-footer';
 import { StoreHeader } from '@/components/store/store-header';
 import type { StoreProduct } from '@/lib/store-types';
+import { missingProductImage } from '@/lib/product-images';
 import { money, productImageAlt } from '@/lib/store-types';
 import { getProduct } from '@/server/catalog';
 import { getRelatedProducts, getStoreShellData } from '@/server/storefront';
@@ -75,7 +76,7 @@ export default async function ProductPage({
     ? product.imageKey.startsWith('http')
       ? product.imageKey
       : `${siteUrl}${product.imageKey}`
-    : `${siteUrl}/blackshark-logo.png`;
+    : `${siteUrl}${missingProductImage}`;
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Product',
@@ -136,7 +137,7 @@ export default async function ProductPage({
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(380px,.9fr)] lg:gap-12">
           <div className="grid aspect-square max-h-[650px] place-items-center rounded-2xl border border-white/10 bg-[#08111c] p-8 sm:p-12">
             <Image
-              src={product.imageKey ?? '/blackshark-logo.png'}
+              src={product.imageKey ?? missingProductImage}
               alt={productImageAlt(storeProduct)}
               width={620}
               height={620}

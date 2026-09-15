@@ -1,3 +1,5 @@
+import { missingProductImage } from '@/lib/product-images';
+
 export type StoreProduct = {
   id: string;
   slug: string;
@@ -45,7 +47,9 @@ export function productSpecs(description: string) {
 }
 
 export function productImageAlt(product: StoreProduct) {
-  return !product.imageKey || product.imageKey === '/blackshark-logo.png'
-    ? `BLACKSHARK logo placeholder for ${product.titleEn}`
+  return !product.imageKey ||
+    product.imageKey === '/blackshark-logo.png' ||
+    product.imageKey === missingProductImage
+    ? `Product photo needed for ${product.titleEn}`
     : product.titleEn;
 }

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Minus, Plus, ShoppingCart, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCommerce } from './commerce-provider';
+import { missingProductImage } from '@/lib/product-images';
 import { money, productPrice } from '@/lib/store-types';
 
 export function CartPageContent() {
@@ -46,7 +47,7 @@ export function CartPageContent() {
                 className="grid grid-cols-[72px_1fr] gap-4 py-5 sm:grid-cols-[100px_1fr_auto] sm:items-center"
               >
                 <Image
-                  src={line.product.imageKey ?? '/blackshark-logo.png'}
+                  src={line.product.imageKey ?? missingProductImage}
                   alt=""
                   width={100}
                   height={100}

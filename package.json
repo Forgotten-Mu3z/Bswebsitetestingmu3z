@@ -11,7 +11,8 @@
     "start": "wrangler dev --config dist/server/wrangler.json",
     "lint": "oxlint app components/store server db",
     "format": "oxfmt",
-    "db:generate": "drizzle-kit generate"
+    "db:generate": "drizzle-kit generate",
+    "images:sync": "node scripts/download-product-images.mjs"
   },
   "dependencies": {
     "react": "19.2.6",

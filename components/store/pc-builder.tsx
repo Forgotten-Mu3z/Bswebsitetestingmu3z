@@ -41,6 +41,7 @@ import {
   type BuilderSelections,
   type BuilderStep,
 } from '@/lib/pc-builder';
+import { missingProductImage } from '@/lib/product-images';
 
 const omr = new Intl.NumberFormat('en-OM', {
   style: 'currency',
@@ -117,7 +118,7 @@ function ProductPicker({
             <div className="flex min-w-0 gap-3">
               <div className="grid size-20 shrink-0 place-items-center overflow-hidden rounded-xl bg-[#050a11]">
                 <Image
-                  src={product.imageKey ?? '/blackshark-logo.png'}
+                  src={product.imageKey ?? missingProductImage}
                   alt=""
                   width={80}
                   height={80}
@@ -391,7 +392,7 @@ export function PcBuilder({ products }: { products: BuilderProduct[] }) {
                       {selected ? (
                         <div className="mt-3 flex min-w-0 items-center gap-3 rounded-xl bg-black/20 p-3">
                           <Image
-                            src={selected.imageKey ?? '/blackshark-logo.png'}
+                            src={selected.imageKey ?? missingProductImage}
                             alt=""
                             width={52}
                             height={52}

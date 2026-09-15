@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Eye, Heart, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCommerce } from './commerce-provider';
+import { missingProductImage } from '@/lib/product-images';
 import type { StoreProduct } from '@/lib/store-types';
 import {
   money,
@@ -67,7 +68,7 @@ export function CatalogCard({ product }: { product: StoreProduct }) {
         className="m-2 grid aspect-square place-items-center overflow-hidden rounded-xl bg-[#060b12] p-5 outline-none ring-cyan-300 focus-visible:ring-2 sm:m-3 sm:p-7"
       >
         <Image
-          src={product.imageKey ?? '/blackshark-logo.png'}
+          src={product.imageKey ?? missingProductImage}
           alt={productImageAlt(product)}
           width={320}
           height={320}

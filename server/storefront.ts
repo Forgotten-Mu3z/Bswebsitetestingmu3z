@@ -12,6 +12,7 @@ import {
 } from 'drizzle-orm';
 import { getDb } from '@/db';
 import { brands, categories, products } from '@/db/schema';
+import { resolveProductImage } from '@/lib/product-images';
 import type { StoreProduct } from '@/lib/store-types';
 
 const storeProductFields = {
@@ -36,7 +37,11 @@ const storeProductFields = {
 function mapStoreProduct(
   row: Omit<StoreProduct, 'updatedAt'> & { updatedAt: Date },
 ): StoreProduct {
-  return { ...row, updatedAt: row.updatedAt.getTime() };
+  return {
+    ...row,
+    imageKey: resolveProductImage(row.slug, row.imageKey),
+    updatedAt: row.updatedAt.getTime(),
+  };
 }
 
 function storeProductQuery() {
@@ -268,5 +273,11 @@ export async function getPcBuilderData() {
       .orderBy(asc(products.titleEn)),
   ]);
 
-  return { categories: categoryRows, products: productRows };
+  return {
+    categories: categoryRows,
+    products: productRows.map((product) => ({
+      ...product,
+      imageKey: resolveProductImage(product.slug, product.imageKey),
+    })),
+  };
 }

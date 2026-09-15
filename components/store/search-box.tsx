@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useEffect, useId, useRef, useState } from 'react';
 import { Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
+import { missingProductImage } from '@/lib/product-images';
 import type { StoreProduct } from '@/lib/store-types';
 import { money, productImageAlt, productPrice } from '@/lib/store-types';
 
@@ -126,7 +127,7 @@ export function SearchBox({ compact = false }: { compact?: boolean }) {
               className={`flex min-h-16 items-center gap-3 border-b border-white/8 px-3 py-2 last:border-0 hover:bg-cyan-300/10 ${activeIndex === index ? 'bg-cyan-300/10' : ''}`}
             >
               <Image
-                src={product.imageKey ?? '/blackshark-logo.png'}
+                src={product.imageKey ?? missingProductImage}
                 alt={productImageAlt(product)}
                 width={48}
                 height={48}

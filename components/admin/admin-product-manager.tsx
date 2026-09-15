@@ -27,6 +27,7 @@ import {
   AlertDialogFooter,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
+import { missingProductImage, resolveProductImage } from '@/lib/product-images';
 
 type Product = {
   id: string;
@@ -106,7 +107,7 @@ const emptyForm = (category = ''): FormValues => ({
   low_stock_threshold: '3',
   status: 'DRAFT',
   featured: false,
-  image_key: '/blackshark-logo.png',
+  image_key: '',
 });
 const versionOf = (product: Product) =>
   String(new Date(product.updatedAt).getTime());
@@ -129,7 +130,7 @@ const toForm = (product: Product): FormValues => ({
   low_stock_threshold: String(product.lowStockThreshold),
   status: product.status,
   featured: product.featured,
-  image_key: product.imageKey ?? '/blackshark-logo.png',
+  image_key: product.imageKey ?? '',
 });
 async function responseJson(response: Response): Promise<ApiResult> {
   return (await response.json()) as ApiResult;
@@ -155,8 +156,11 @@ export function AdminProductManager({
   const [pending, startTransition] = useTransition();
   const [deleteTarget, setDeleteTarget] = useState<Product | null>(null);
   const imagePreview = useMemo(
-    () => (imageFile ? URL.createObjectURL(imageFile) : form.image_key),
-    [form.image_key, imageFile],
+    () =>
+      imageFile
+        ? URL.createObjectURL(imageFile)
+        : resolveProductImage(form.slug, form.image_key || null),
+    [form.image_key, form.slug, imageFile],
   );
   useEffect(() => {
     if (!imagePreview.startsWith('blob:')) return;
@@ -616,7 +620,12 @@ export function AdminProductManager({
                     <div className="flex items-start gap-3">
                       <div className="grid size-16 shrink-0 place-items-center overflow-hidden rounded-xl border border-white/10 bg-[#03060c]">
                         <Image
-                          src={product.imageKey ?? '/blackshark-logo.png'}
+                          src={
+                            resolveProductImage(
+                              product.slug,
+                              product.imageKey,
+                            ) ?? missingProductImage
+                          }
                           alt=""
                           width={96}
                           height={96}

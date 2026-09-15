@@ -27,6 +27,7 @@ import {
   productPrice,
   productSpecs,
 } from '@/lib/store-types';
+import { missingProductImage, resolveProductImage } from '@/lib/product-images';
 
 type CartLine = { product: StoreProduct; quantity: number };
 
@@ -64,15 +65,26 @@ function readCart(): CartLine[] {
   try {
     const value: unknown = JSON.parse(localStorage.getItem(CART_KEY) ?? '[]');
     return Array.isArray(value)
-      ? value.filter((line): line is CartLine =>
-          Boolean(
-            line &&
-            typeof line === 'object' &&
-            isStoreProduct((line as CartLine).product) &&
-            Number.isInteger((line as CartLine).quantity) &&
-            (line as CartLine).quantity > 0,
-          ),
-        )
+      ? value
+          .filter((line): line is CartLine =>
+            Boolean(
+              line &&
+              typeof line === 'object' &&
+              isStoreProduct((line as CartLine).product) &&
+              Number.isInteger((line as CartLine).quantity) &&
+              (line as CartLine).quantity > 0,
+            ),
+          )
+          .map((line) => ({
+            ...line,
+            product: {
+              ...line.product,
+              imageKey: resolveProductImage(
+                line.product.slug,
+                line.product.imageKey,
+              ),
+            },
+          }))
       : [];
   } catch {
     return [];
@@ -84,7 +96,12 @@ function readWishlist(): StoreProduct[] {
     const value: unknown = JSON.parse(
       localStorage.getItem(WISHLIST_KEY) ?? '[]',
     );
-    return Array.isArray(value) ? value.filter(isStoreProduct) : [];
+    return Array.isArray(value)
+      ? value.filter(isStoreProduct).map((product) => ({
+          ...product,
+          imageKey: resolveProductImage(product.slug, product.imageKey),
+        }))
+      : [];
   } catch {
     return [];
   }
@@ -196,7 +213,7 @@ export function CommerceProvider({ children }: { children: React.ReactNode }) {
                 {cart.map((line) => (
                   <li key={line.product.id} className="flex gap-3 py-4">
                     <Image
-                      src={line.product.imageKey ?? '/blackshark-logo.png'}
+                      src={line.product.imageKey ?? missingProductImage}
                       alt=""
                       width={72}
                       height={72}
@@ -309,7 +326,7 @@ export function CommerceProvider({ children }: { children: React.ReactNode }) {
                 {wishlist.map((product) => (
                   <li key={product.id} className="flex gap-3 py-4">
                     <Image
-                      src={product.imageKey ?? '/blackshark-logo.png'}
+                      src={product.imageKey ?? missingProductImage}
                       alt=""
                       width={72}
                       height={72}
@@ -374,7 +391,7 @@ export function CommerceProvider({ children }: { children: React.ReactNode }) {
             <div className="grid sm:grid-cols-2">
               <div className="grid min-h-64 place-items-center bg-black/25 p-8">
                 <Image
-                  src={quickView.imageKey ?? '/blackshark-logo.png'}
+                  src={quickView.imageKey ?? missingProductImage}
                   alt={productImageAlt(quickView)}
                   width={360}
                   height={360}
